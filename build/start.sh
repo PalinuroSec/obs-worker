@@ -1,19 +1,10 @@
 #!/bin/bash
 
-OBSCONFIG="/etc/sysconfig/obs-server"
+#use https
+sed -i 's/http\:\/\//https\:\/\//g' /usr/sbin/obsworker
 
-# Pick all environment variables starting with OBS_ and set them in
-# /etc/sysconfig/obs-server
-for KV in `printenv | grep OBS_`; do
-  KEY=`echo ${KV} | cut -d '=' -f1`
-  VALUE=`echo ${KV} | cut -d '=' -f2`
-  grep -q "^${KEY}" $OBSCONFIG
-  if [ $? -eq 0 ]; then
-    sed -i "s/${KEY}=.*/${KEY}="${VALUE}"/" $OBSCONFIG
-  else
-    echo ${KEY}="${VALUE}" >> $OBSCONFIG
-  fi
-done
+#get variables from environment
+printenv | grep OBS_ >> /etc/sysconfig/obs-server
 
 mkdir -p /var/cache/obs/worker
 mount -t tmpfs -o mode=1777 none /var/cache/obs/worker
