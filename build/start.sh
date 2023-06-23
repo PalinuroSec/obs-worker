@@ -16,15 +16,15 @@ for KV in `printenv | grep OBS_`; do
 done
 
 mkdir -p /var/cache/obs/worker
-mount -t tmpfs -o mode=1777,size=4g none /var/cache/obs/worker
+mount -t tmpfs -o mode=1777 none /var/cache/obs/worker
 
 if [ $? -ne 0 ]; then
   echo "Mounting tmpfs was unsuccessful. Image not started in privileged mode?"
   exit 1
 fi
 
-/etc/init.d/obsworker start
+obsworker start
 while [ $? -eq 0 ]; do
   sleep 10
-  /etc/init.d/obsworker status
+  obsworker status
 done
