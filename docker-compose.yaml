@@ -1,0 +1,20 @@
+version: 2.1
+services:
+  worker1:
+    build: ./build
+    privileged: true
+    environment:
+      - OBS_SRC_SERVER="https://build.parrotsec.org"
+      - OBS_REPO_SERVERS="https://download.parrotsec.org"
+      - OBS_WORKER_INSTANCES="1"
+      - OBS_WORKER_JOBS="4"
+      - OBS_WORKER_INSTANCE_NAMES="WORKER10"
+  worker2:
+    build: ./build
+    privileged: true
+    environment:
+      - OBS_SRC_SERVER="https://build.parrotsec.org"
+      - OBS_REPO_SERVERS="https://download.parrotsec.org"
+      - OBS_WORKER_INSTANCES="1"
+      - OBS_WORKER_JOBS="4"
+      - OBS_WORKER_INSTANCE_NAMES="WORKER11"
