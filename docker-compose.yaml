@@ -4,9 +4,11 @@ services:
     build: ./build
     privileged: true
     network_mode: host
+    volumes:
+      - ./build/start.sh:/opt/start.sh
     environment:
-      - OBS_SRC_SERVER="build.parrotsec.org"
-      - OBS_REPO_SERVERS="build.parrotsec.org"
-      - OBS_WORKER_INSTANCES="2"
+      - OBS_SRC_SERVER="build.parrotsec.org:5352"
+      - OBS_REPO_SERVERS="build.parrotsec.org:5252"
+      - OBS_WORKER_INSTANCES="1"
       - OBS_WORKER_JOBS="4"
       - OBS_WORKER_INSTANCE_NAMES="WORKER10"
