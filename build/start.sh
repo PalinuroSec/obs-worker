@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #use https
-sed -i 's/http\:\/\//https\:\/\//g' /usr/sbin/obsworker
+#sed -i 's/http\:\/\//https\:\/\//g' /usr/sbin/obsworker
 
 #get variables from environment
 printenv | grep OBS_ >> /etc/sysconfig/obs-server
