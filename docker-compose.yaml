@@ -3,6 +3,8 @@ services:
   worker1:
     build: ./build
     privileged: true
+    volumes:
+      - ./build/start.sh:/opt/start.sh
     environment:
       - OBS_SRC_SERVER="build.parrotsec.org:5352"
       - OBS_REPO_SERVERS="build.parrotsec.org:5252"
@@ -12,6 +14,8 @@ services:
   worker2:
     build: ./build
     privileged: true
+    volumes:
+      - ./build/start.sh:/opt/start.sh
     environment:
       - OBS_SRC_SERVER="build.parrotsec.org:5352"
       - OBS_REPO_SERVERS="build.parrotsec.org:5252"
